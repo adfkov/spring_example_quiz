@@ -133,4 +133,22 @@
 		
 		
 	</insert>
+	
+	
+	<update id="changeRealEstateById" parameterType="map">
+		UPDATE `real_estate`
+		SET
+			`type` = "전세",
+			`price` = #{price}
+		WHERE
+			`id`= #{id}
+
+	</update>
+	
+	<delete id="deleteRealEstate" parameterType="int">
+		DELETE FROM `real_estate`
+		WHERE `id`= #{id}
+		
+	</delete>
+	
 </mapper>

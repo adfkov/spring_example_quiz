@@ -41,6 +41,14 @@ public class RealEstateBO {
 	public int addRealEstateByField(int realtorId , String address, int area , String type , int price , Integer rentPrice) {
 		return realEstateMapper.insertRealEstateByField(realtorId,address, area, type, price, rentPrice);
 	}
+	
+	public int updateRealEstateById(int id, String type, int price) {
+		return realEstateMapper.changeRealEstateById(id, type, price);
+	}
+	
+	public int deleteRealEstate(int id) {
+		return realEstateMapper.deleteRealEstate(id);
+	}
 }
 
 // controller -> bo -> mapper ->
