@@ -17,6 +17,7 @@
 </head>
 <body>
 	<div class="container">
+		<img src="/img/sunny.jpg">
 		<h1>회원 정보 리스트</h1>
 		<table class="table text-center">
 			<thead>
@@ -34,10 +35,38 @@
 				<tr>
 					<td>${status.count}</td>
 					<td>${member.name}</td>
-					<td>${member.phoneNumber}</td>
-					<td>${fn:replace(${member.nationality} , "삼국시대", "삼국 - ")}</td>
-					<td>${member.email}</td>
-					<td>${member.introduce}</td>
+						<td>
+						<c:choose>
+							<c:when test="${member.phoneNumber.startsWith('010')}">
+								${member.phoneNumber}
+							</c:when>
+							<c:otherwise>
+								<pre>유효하지 않은 전화번호</pre>
+							</c:otherwise>
+						
+						</c:choose>
+						</td>
+					<%-- <td></td>--%>
+					<c:set var="nat" value="${member.nationality}" />
+					
+					<td>${fn:replace(nat, "삼국시대", "삼국 - ")} </td> <%-- ${fn:replace(member.nationality, "삼국시대", "삼국 - " --%>
+					
+					<td>
+					<b>${fn:split(member.email,'@')[0]}</b>@${fn:split(member.email,'@')[1]}
+					
+					</td>
+					
+					
+					<td class="text-left">
+					<c:choose>
+						<c:when test="${member.introduce.length() > 15}"> <%-- length(member.introduce) --%>
+							${fn:substring(member.introduce,0,15)}...
+						</c:when>
+						<c:otherwise>
+							${member.introduce}
+						</c:otherwise>
+					</c:choose>
+					</td>
 					
 				</tr>
 				</c:forEach>

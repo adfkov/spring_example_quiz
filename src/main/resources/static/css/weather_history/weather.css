@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.wrap {height:1000px;}
+section {height: 900px;}
+footer {height: 100px;}
+nav {background-color: cornflowerblue;}
+.a {font-size: 20px; text-decoration-line: none;}
+.gisangchung_text {font-size: 20px;}
+a {text-decoration-line: none;}
+
+.footer-right-wrap {font-size: 12px;}
