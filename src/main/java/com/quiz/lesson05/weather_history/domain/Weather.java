@@ -2,13 +2,16 @@ package com.quiz.lesson05.weather_history.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Weather {
+//	@DateTimeFormat(pattern="yyyy-MM-dd") // 그 다음 modelattribute
 	private Date date;
 	private String weather;
-	private float temperatures;
-	private float precipitation;
+	private Double temperatures;
+	private Double precipitation;
 	private String microDust;
-	private float windSpeed;
+	private Double windSpeed;
 	public Date getDate() {
 		return date;
 	}
@@ -21,16 +24,16 @@ public class Weather {
 	public void setWeather(String weather) {
 		this.weather = weather;
 	}
-	public float getTemperatures() {
+	public Double getTemperatures() {
 		return temperatures;
 	}
-	public void setTemperatures(float temperatures) {
+	public void setTemperatures(Double temperatures) {
 		this.temperatures = temperatures;
 	}
-	public float getPrecipitation() {
+	public Double getPrecipitation() {
 		return precipitation;
 	}
-	public void setPrecipitation(float precipitation) {
+	public void setPrecipitation(Double precipitation) {
 		this.precipitation = precipitation;
 	}
 	public String getMicroDust() {
@@ -39,10 +42,10 @@ public class Weather {
 	public void setMicroDust(String microDust) {
 		this.microDust = microDust;
 	}
-	public float getWindSpeed() {
+	public Double getWindSpeed() {
 		return windSpeed;
 	}
-	public void setWindSpeed(float windSpeed) {
+	public void setWindSpeed(Double windSpeed) {
 		this.windSpeed = windSpeed;
 	}
 	

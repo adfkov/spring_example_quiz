@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+.container { width: 600px;}
+header {background-color: aquamarine; height: 80px; font-size: 25px;}
+.store {border: 1px solid blue;}

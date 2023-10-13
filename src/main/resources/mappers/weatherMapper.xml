@@ -15,16 +15,16 @@
 		LIMIT 1 -->	
  	</select>
  	
- 	<insert id="putWeather" parameterType="map">
+ 	<insert id="insertWeather" parameterType="map">
  		INSERT INTO `weather_history`
  		(
-		 	`date`, 
-		 	`weather`,
-		 	`microDust`, 
-		 	`temperatures`,
-		 	`precipitation`,
-		 	`windSpeed`
- 		)
+		 	`date`
+		 	,`weather`
+		 	,`microDust`
+		 	,`temperatures`
+		 	,`precipitation`
+		 	,`windSpeed`
+		 	)
  		VALUES
  		(
  			#{date}

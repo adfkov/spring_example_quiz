@@ -29,11 +29,12 @@
 				<navbody>
 					<ul class="nav flex-column mt-4">
 						<li class="nav-item mt-4">
-							<a href="#" class="a text-white font-weight-bold">날씨
+							<a href="/weather_history/weather" class="a text-white font-weight-bold">날씨
 							</a>
 						</li>
 						<li class="nav-item mt-4">
-							<a href="#" class="a text-white font-weight-bold">날씨입력
+							<a href="/lesson05/add-weather-view" class="a text-white font-weight-bold">날씨입력
+			
 							</a>
 						</li>
 						<li class="nav-item mt-4">

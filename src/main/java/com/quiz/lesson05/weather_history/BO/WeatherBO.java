@@ -18,7 +18,7 @@ public class WeatherBO {
 		return weatherMapper.selectWeather();
 	}
 	
-	public void putWeather(Date date, String weather,String microDust,float temperatures, float precipitation,float windSpeed) {
+	public void putWeather(Date date, String weather,String microDust,Double temperatures, Double precipitation,Double windSpeed) {
 		weatherMapper.insertWeather( date,  weather, microDust,temperatures,  precipitation, windSpeed);
 	}
 	
