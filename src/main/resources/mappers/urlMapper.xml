@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quiz.lesson06.mapper.UrlMapper">
+ 	<insert id="insertUser" parameterType="com.quiz.lesson06.domain.Url"
+ 	useGeneratedKeys="true" keyProperty="id">
+ 		INSERT INTO `url_table`
+ 		(`name`,`url`,`createdAt`,`updatedAt`)
+ 		VALUES
+ 		(	#{name}
+ 			,#{address}
+ 			,NOW()
+ 			,NOW()
+ 			)
+ 	</insert> 
+ 	
+ 	<select id="selectUrl" parameterType="map" resultType="com.quiz.lesson06.domain.Url">
+ 		SELECT
+ 			`id`
+ 			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`url_table`
+			
+ 	</select>
+ </mapper>
