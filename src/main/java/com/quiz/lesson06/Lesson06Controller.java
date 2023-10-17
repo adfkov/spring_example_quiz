@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,17 +28,27 @@ public class Lesson06Controller {
 		return "lesson06/addBookmark";
 	}
 	
-	@PostMapping("/quiz01/add-bookmark")
 	@ResponseBody
-	public String addBookmark(
+	@PostMapping("/quiz01/add-bookmark")
+	public Map<String, Object> addBookmark(
 			@RequestParam("name") String name,
-			@RequestParam("address") String address
+			@RequestParam("url") String url
 			) {
-		urlBO.addUrl(name, address);
-		return "성공";
-	}
+		urlBO.addUrl(name, url);
 	
-	// 즐겨찾기 목록
+		// 응답값 : JSON String
+//		{
+//			"code":1,
+//			"result":"success"
+//		}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "success");
+		return result;
+		
+	} // data: 
+	 
+	// 즐겨찾기 목록 http://localhost/lesson06/quiz01/bookmark-list-view
 	@GetMapping("/quiz01/bookmark-list-view")
 	public String bookmarkListView(Model model) {
 		List<Url> urlList = urlBO.getUrl();

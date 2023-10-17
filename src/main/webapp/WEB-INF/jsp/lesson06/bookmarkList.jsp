@@ -22,9 +22,9 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>No.</th>
+					<th>이름</th>
+					<th>주소</th>
 				</tr>
 			</thead>
 			
@@ -33,7 +33,7 @@
 				<tr>
 					<td>${status.count}</td>
 					<td>${url.name}</td>
-					<td>${url.url}</td>
+					<td><a href="${url.url}" target="_blank">${url.url}</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>

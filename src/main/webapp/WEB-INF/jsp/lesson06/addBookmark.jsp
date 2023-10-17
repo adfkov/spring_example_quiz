@@ -16,12 +16,20 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 추가하기</h1>
-		<label for="name">제목</label>
-		<input type="text" id="name" name="name" class="form-control">
+		<div class="form-group">
+			<label for="name">제목</label>
+			<input type="text" id="name" name="name" class="form-control">
+		</div>
+		<div class="form-group">
 		<label for="address">주소</label>
-		<input type="text" id="address" name="address" class="form-control">
-		<input type="button" value="추가" id="btn" class="btn btn-success form-control">
+			<div class="d-flex">
+				
+				<input type="text" id="url" name="url" class="form-control">
+				<input type="button" class="ml-2 btn btn-sm btn-primary" id="urlCheckBtn" value="중복 확인">
+			</div>
+		</div>
 		
+		<input type="button" value="추가" id="btn" class="btn btn-success form-control btn-block">
 	</div>
 	
 		<script>
@@ -32,39 +40,45 @@
 				//alert("버튼 클릭");
 				
 				// validation check
-				let name = $("#name").val().trim();
+				let name = $('#name').val().trim();
 				if (name == "") {
 					alert("이름을 입력하세요");
 					return; 
-				}
+					}
 				
-				let address = $('#address').val().trim();
-				if (address.length < 1) {
+				let url = $('#url').val().trim();
+				if (url.length < 1) {
 					alert("url을 입력하세요");
 					return; 
+					}
+				if(!((url.startsWith("http://")) || (url.startsWith("https://")) )) {
+					alert("다시!");
+					return;
+					
 				}
 				
 				console.log(name);
-				console.log(address);
+				console.log(url);
 				$.ajax({
 					// request
 					type:"POST"
 					, url:"http://localhost/lesson06/quiz01/add-bookmark"
-					, data: {"name":name, "address":address}
-				
+					, data: {"name":name, "url":url}
+				<%--"{"code":1, "result":"success"}"--%>
 						
 					// response
 					
 					// call back 함수
-					, success: function(data) {
-						alert(data);
-						if(data =="성공") {
-							location.href ="/lesson06/ex01/bookmark-list-view";
-						}
+					, success: function(data) { // data: response 응답값(JSON STRING -> 딕셔너리 오브젝)
+					// data는 JSON String => Object 변환된 형태로 사용할 수 있다.
+					// jquery의 ajax 함수 기능
+						alert(data.code);
+						alert(data.result)
+					/* 	if(data =="성공") {
+							location.href ="/lesson06/quiz01/bookmark-list-view";
+						} */
 					}
-					, complete : function(data) {
-						// 성공이든 실패든 무조건 불려짐 => 안씀!
-					}
+					
 					, error: function(request, status, error) {
 						alert(request);
 						alert(status);
@@ -73,6 +87,16 @@
 					}
 				});
 			});
+		
+			// 중복확인 버튼
+			$("#urlCheckBtn").on('click', function() {
+				if(url)
+				$.ajax({
+					type:"GET"
+						, url:"http://localhost/lesson06/quiz01/is-duplication"
+						, data: {"url":url}
+				})
+			})
 		});
 		
 	</script>

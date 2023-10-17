@@ -13,9 +13,9 @@ public class UrlBO {
 	@Autowired
 	private UrlMapper urlMapper;
 	
-	public void addUrl(String name, String address) {
+	public void addUrl(String name, String url) {
 		// insert 후 끝
-		urlMapper.insertUser(name, address);
+		urlMapper.insertUser(name, url);
 	}
 	
 	public List<Url> getUrl() {
