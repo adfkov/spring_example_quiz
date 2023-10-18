@@ -22,5 +22,14 @@ public class UrlBO {
 		return urlMapper.selectUrl();
 	}
 	
+	// input : url / output: Url 행(단건이거나 null)
+		// 2개를 가져오면 list가 되므로 Too many result 에러 뜬다.
+	public Url getUrlByUrl(String url) {
+		return urlMapper.selectUrlByUrl(url);
+	}
+	
+	public void deleteBookmarkById(int id) {
+		urlMapper.deleteBookmarkById(id);
+	}
 
 }

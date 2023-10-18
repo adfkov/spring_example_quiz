@@ -1,0 +1,50 @@
+@charset "UTF-8";
+header {
+	height: 100px;
+}
+.headerlogo {
+	font-size: 40px;
+	font-family: monospace;
+}
+.banner {
+	height: 500px;
+}
+.reserve {
+	height: 250px;
+}
+footer {
+	height: 80px;
+}
+.text1,
+.text2 {
+	font-size: 40px;
+}
+.text3,
+.text4,
+.text5 {
+	font-size: 30px;
+}
+li {
+}
+a,
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+.navi {
+	background-color: chocolate;
+	font-weight: bold;
+}
+.nav-item {
+	color: white;
+}
+.lay1,
+.lay3 {
+	background-color: saddlebrown;
+}
+.lay2 {
+	background-color: chocolate;
+}
+.reservewrap {
+	height: 50px;
+}

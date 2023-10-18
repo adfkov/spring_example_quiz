@@ -26,4 +26,22 @@
 			`url_table`
 			
  	</select>
- </mapper>
+ 	
+ 	<select id="selectUrlByUrl" parameterType="string" resultType="com.quiz.lesson06.domain.Url">
+ 		SELECT
+ 			`id`
+ 			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM 
+			`url_table`
+		WHERE
+			`url` = #{url}
+ 	</select>
+ 	
+ 	<delete id="deleteBookmarkById" parameterType="int">
+ 		DELETE FROM `url_table`
+ 		WHERE `id` = #{id}
+ 	</delete>
+ </mapper> 

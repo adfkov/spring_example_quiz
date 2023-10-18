@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +56,42 @@ public class Lesson06Controller {
 		model.addAttribute("urlList", urlList);
 		
 		return "lesson06/bookmarkList";
+	}
+	
+	
+	// -------QUIZ 02 시작--------------
+	// URL 중복확인 - AJAX 요청
+	@ResponseBody
+	@PostMapping("/quiz02/is-duplicated-url")
+	public Map<String, Object> isDuplicatedUrl(
+			@RequestParam("url") String url) {
+		// db 조회
+		Url urll = urlBO.getUrlByUrl(url);		
+		
+		// 응답 값
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", false); // 넣고 시작
+		if(urll != null) {
+			result.put("is_duplication", true); // 넣고 시작
+		}
+		return result;
+	}
+	
+	// 삭제 기능 - AJAX 호출 : 버튼을 누를 때 이므로
+	@ResponseBody
+	@DeleteMapping("/quiz02/delete-bookmark")
+	public Map<String, Object> deleteBookMark(
+			@RequestParam("id") int id) {
+		//db delete
+		urlBO.deleteBookmarkById(id);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
+		
+		return result;
+		
 	}
 	
 }

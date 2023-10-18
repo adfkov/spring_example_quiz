@@ -25,8 +25,10 @@
 			<div class="d-flex">
 				
 				<input type="text" id="url" name="url" class="form-control">
-				<input type="button" class="ml-2 btn btn-sm btn-primary" id="urlCheckBtn" value="중복 확인">
+				<input type="button" class="ml-2 btn btn-sm btn-info" id="urlCheckBtn" value="중복 확인">
 			</div>
+			<small id="duplicatedText" class="text-danger d-none">중복된 url 입니다.</small>
+			<small id="availableText" class="text-success d-none">저장가능한 url 입니다.</small>
 		</div>
 		
 		<input type="button" value="추가" id="btn" class="btn btn-success form-control btn-block">
@@ -34,8 +36,45 @@
 	
 		<script>
 		$(document).ready(function() {
-
-			// 2) jquery의 AJAX 통신 이용하기
+			// 중복확인 버튼 클릭
+			$("#urlCheckBtn").on("click", function() {
+				/*alert("이게 클릭이야");  */
+				let url = $('#url').val().trim();
+				if(!url) {
+					alert("검사할 url을 입력하세요.");
+					return;
+					
+				}
+				
+				// DB에서 URL 중복확인  - AJAX 통신
+				$.ajax({ // 내가 만든 브라우저
+					// request 
+					type:"POST"
+					, url: "/lesson06/quiz02/is-duplicated-url"
+					, data: {"url": url}
+					// response
+					, success: function(data) {
+						// {"code" : 200, "is_duplication": true} true 중복
+						if(data.is_duplication) {
+							// 중복
+							$('#duplicatedText').removeClass('d-none');
+							$('#availableText').addClass('d-none');
+							
+							
+						} else {
+							// 중복 아님
+							$('#availableText').removeClass('d-none');
+							$('#duplicatedText').addClass('d-none');
+						}
+					}	
+					, error: function(request, status, error) {
+						alert("중복확인에 실패했습니다.");
+					}
+				});
+ 			}); 
+			
+			
+			// 2) jquery의 AJAX 통신 이용하기 // 추가 버튼 클릭
 			$('#btn').on('click', function() {
 				//alert("버튼 클릭");
 				
@@ -57,8 +96,12 @@
 					
 				}
 				
-				console.log(name);
-				console.log(url);
+				// quiz02) 저장 가능한 url인지 체크
+				if($('#availableText').hasClass('d-none')) {
+					alert("URL 중복확인을 다시해주세요.");
+					return;
+				}
+				
 				$.ajax({
 					// request
 					type:"POST"
@@ -74,9 +117,9 @@
 					// jquery의 ajax 함수 기능
 						alert(data.code);
 						alert(data.result)
-					/* 	if(data =="성공") {
+					 	if(data =="성공") {
 							location.href ="/lesson06/quiz01/bookmark-list-view";
-						} */
+						} 
 					}
 					
 					, error: function(request, status, error) {
@@ -88,15 +131,6 @@
 				});
 			});
 		
-			// 중복확인 버튼
-			$("#urlCheckBtn").on('click', function() {
-				if(url)
-				$.ajax({
-					type:"GET"
-						, url:"http://localhost/lesson06/quiz01/is-duplication"
-						, data: {"url":url}
-				})
-			})
 		});
 		
 	</script>

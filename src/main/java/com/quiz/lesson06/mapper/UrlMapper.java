@@ -12,4 +12,8 @@ public interface UrlMapper {
 	public void insertUser(@Param("name")String name, @Param("url") String url);
 	
 	public List<Url> selectUrl();
+	
+	public Url selectUrlByUrl(String url);
+	public void deleteBookmarkById(int id);
+	
 }
