@@ -34,7 +34,7 @@
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     crossorigin="anonymous"
 		></script>
-		<link rel="stylesheet" href="Quiz_통나무.css" type="text/css" />
+		<link rel="stylesheet" href="/css/tree/tree.css" type="text/css" />
 		<title>통나무 팬션</title>
 	</head>
 	<body>
@@ -46,7 +46,7 @@
 				<ul class="nav nav-fill list-unstyled w-100">
 					<li class="nav-item"><a href="#">팬션 소개</a></li>
 					<li class="nav-item"><a href="#">객실 보기</a></li>
-					<li class="nav-item"><a href="#">예약안내</a></li>
+					<li class="nav-item"><a href="/lesson06/quiz03/reserve">예약안내</a></li>
 					<li class="nav-item"><a href="#">커뮤니티</a></li>
 				</ul>
 			</nav>

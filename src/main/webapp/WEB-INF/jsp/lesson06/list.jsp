@@ -11,8 +11,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
+		<link rel="stylesheet" href="/css/tree/tree.css" type="text/css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ 
 </head>
 <body>
 	<div class="container">
@@ -25,7 +27,7 @@
 				<ul class="nav nav-fill list-unstyled w-100">
 					<li class="nav-item"><a href="#">팬션 소개</a></li>
 					<li class="nav-item"><a href="#">객실 보기</a></li>
-					<li class="nav-item"><a href="#">예약안내</a></li>
+					<li class="nav-item"><a href="/lesson06/quiz03/reserve">예약안내</a></li>
 					<li class="nav-item"><a href="#">커뮤니티</a></li>
 				</ul>
 			</nav>
@@ -72,15 +74,28 @@
 		$(document).ready(function() {
 			$(".deleteBtn").on("click", function() {
 				let id = $(this).data("tree-id");
-				alert(id);
+				//alert(id);
 				
 				$.ajax({
-					"type":"DELETE"
-					,"url":
-					
-				})
-			})
-		})
+					type:"DELETE"
+					,url: "/lesson06/quiz03/delete-tree"
+					, data: {"id": id}
+					, success : function(data) {
+						if(data.result== "success") {
+							alert("삭제 되었습니다.");
+							location.reload(true);
+						// {"code": 200, "result" :"success"}
+						} else {
+							// 서버 로직 상 에러
+							alert("삭제하는 데 실패했습니다.");
+						}
+					}
+					, error: function(request, status, error) {
+						alert("삭제하는 데 실패, 관리자 문희해줘용");
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>
