@@ -118,7 +118,7 @@
 		 	$.ajax({
 				type:"POST"
 				, url:"/lesson06/quiz03/add-tree"
-				, data : {"name":name, "date":date,"day":day,"headcount":headcount,"phoneNumber":phoneNumber}
+				, data : {"name" :name , "date":date ,"day":day ,"headcount":headcount , "phoneNumber":phoneNumber}
 				, success: function(data) {
 					if(data.result =="success") {
 						alert("예약 완료되었습니다!");

@@ -16,8 +16,12 @@ public interface TreeMapper {
 	
 	public void insertTree(
 			@Param("name") String name, 
-			@Param("date")Date date, 
+			@Param("date") String date, 
 			@Param("day")int day,
 			@Param("headcount")int headcount, 
 			@Param("phoneNumber")String phoneNumber);
+	
+	public Tree selectTree(
+			@Param("name")String name
+			,@Param("phoneNumber") String phoneNumber);
 }

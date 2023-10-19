@@ -45,4 +45,13 @@
  			, NOW()
  			)
  	</insert>
+ 	
+ 	<select id="selectTree" parameterType="map" resultType="com.quiz.lesson06.tree.domain.Tree">
+ 		SELECT FROM `booking`
+ 		WHERE
+ 			`name` = #{name} 
+ 		AND
+ 			`phoneNumber` = #{phoneNumber}
+
+ 	</select>
  </mapper>

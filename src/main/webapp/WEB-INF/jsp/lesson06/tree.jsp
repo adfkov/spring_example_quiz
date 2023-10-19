@@ -26,7 +26,7 @@
 	
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+
 		<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 
 		<script
@@ -51,7 +51,7 @@
 				</ul>
 			</nav>
 			<section class="banner bg-primary">
-				<img id="bannerImg" src="test06_banner1.jpg" width="1110px" height="500px" />
+				<img id="bannerImg" src="http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner1.jpg" width="1110px" height="500px" />
 			</section>
 			<section class="reserve bg-success d-flex">
 				<div
@@ -66,7 +66,7 @@
 				<div class="lay2 col-4">
 					<div class="reservewrap d-flex text-white mt-4 ml-2 w-100">
 						<h5 class="reserve1">예약 확인</h5>
-						<div class="radio pl-3 font-weight-bold">
+						<!-- <div class="radio pl-3 font-weight-bold">
 							<label name="member" class="mr-2" for="1"
               value="member">회원<input
 									type="radio"
@@ -78,41 +78,21 @@
 							<label name="member" for="2"
               value="nonmembr">비회원<input type="radio" id="2" name="reg" value="nonmember"
 							/></label>
-						</div>
+						</div> -->
 					</div>
 					<div class="idpw mr-3">
 						<div class="id d-flex justify-content-center align-items-center">
-							<small class="idname col-3 text-white">아이디:</small>
-							<input type="text" id="zzid" class="col-9 form-control" />
+							<small class="idname col-3 text-white">이름:</small>
+							<input type="text" id="name" class="col-9 form-control" />
 						</div>
 						<div
 							class="id d-flex justify-content-center align-items-center pt-2"
 						>
-							<small class="idname  col-3 text-white p-0" id="password">비밀번호:</small>
-							<input type="password" class="col-9 form-control" />
-						</div>
-					</div>
-					<div class="namename mr-3 d-none">
-						<div
-							class="name d-flex justify-content-center align-items-center pt-1"
-						>
-							<small class="username col-3 text-white">이름</small>
-							<input type="text" id="username" class="col-9 form-control" />
-						</div>
-						<div
-							class="name d-flex justify-content-center align-items-center pt-1"
-						>
-							<small class="call col-3 text-white p-0">전화번호</small>
+							<small class="idname  col-3 text-white p-0" id="phonefffNumber">전화번호:</small>
 							<input type="text" id="phoneNumber" class="col-9 form-control" />
 						</div>
-
-						<div
-							class="name d-flex justify-content-center align-items-center pt-1"
-						>
-							<small class=" col-3 text-white pl-2">날짜 </small>
-							<input type="text" id="date" class="col-9 form-control" />
-						</div>
 					</div>
+					
 					<div class="button d-flex justify-content-end pt-2">
 						<button type="button" class="submit-btn btn btn-success font-weight-bold">
 							조회하기
@@ -146,46 +126,46 @@
           minDate:0
           , dateFormat:"yy년 mm월 dd일"
         });
-
+	
+         // 조회하기 버튼 눌렀을 때
+         
+         
       $('.submit-btn').on('click', function() {
-        let radio = $('input:radio[name=reg]:checked').val(); // member or nonmember
+      /*   let radio = $('input:radio[name=reg]:checked').val(); // member or nonmember */
        // alert(radio);
-        if(radio =="member"){
-          let id = $("#zzid").val().trim();
-          if(id =="") {
-            alert("아이디를 입력하세요.");
+        
+          let name = $("#name").val().trim();
+          if(name =="") {
+            alert("이름을 입력하세요.");
             return;
           }
 
-          let password = $("#password").val();
-         if(password=="") {
-          alert("비밀번호를 입력하세요.");
+          let phoneNumber = $("#phoneNumber").val().trim();
+         if(phoneNumber=="") {
+          alert("전화번호를 입력하세요.");
           return;
          } 
-        } else { // 비회원
-          let name = $("#username").val().trim();
-          if(name ==""){
-            alert("이름을 입력하세요");
-            return;
-          }
-          let phoneNumber = $("#phoneNumber").val().trim();
-          if(phoneNumber =="") {
-            alert("전화번호를 입력하세요");
-            return;
-          }
+        
           if(phoneNumber.startsWith("010") == false) {
             alert("010으로 시작하는 번호만 입력 가능합니다.");
             return;
           }
           
-          let reserveDate = $('#date').val();
-          if(reserveDate =="") {
-            alert("날짜를 선택해주세요");
-            return;
-          }
-        }
+          $.ajax({
+        	  type:"POST"
+          	,url:"/lesson06/quiz03/find-tree"
+          	,data:{"name":name, "phoneNumber":phoneNumber}
+          	,success: function(data) {
+          		if(data.code == 200) {
+          			alert(data.name);
+          			location.href = "/lesson06/quiz03/1";
+          		}
+          	}
+          })
+        
+        });
       
-      });
+     	
 
 				$("input[id=1]").on("click", function () {
 					if ($("#1").prop("checked", true)) {
@@ -201,8 +181,8 @@
 				});
         
         //4 이미지 3초 간격 변경
-        let bannerImage = ['test06_banner1.jpg' , 'test06_banner2.jpg',
-        'test06_banner3.jpg','test06_banner4.jpg'];
+        let bannerImage = ['http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner1.jpg' , 'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner2.jpg',
+        'http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner3.jpg','http://marondal.com/material/images/dulumary/web/front/jquery/test06_banner4.jpg'];
         let currentIndex = 0;
         
         setInterval(function() {
@@ -218,6 +198,11 @@
         }
 
 			});
+			
+			
+			
 		</script>
+		
+		
 	</body>
 </html>

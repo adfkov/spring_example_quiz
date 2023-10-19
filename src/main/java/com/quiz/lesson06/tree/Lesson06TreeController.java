@@ -1,6 +1,5 @@
 package com.quiz.lesson06.tree;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +56,7 @@ public class Lesson06TreeController {
 	@ResponseBody
 	public Map<String, Object> addTree( 
 			@RequestParam("name") String name
-			,@RequestParam("date") Date date
+			,@RequestParam("date") String date
 			,@RequestParam("day") int day
 			,@RequestParam("headcount") int headcount
 			,@RequestParam("phoneNumber") String phoneNumber
@@ -73,4 +72,32 @@ public class Lesson06TreeController {
 		
 			
 		}
+	
+	// 예약 확인 초기 페이지
+	@GetMapping("/quiz03/view-tree")
+	public String viewTree() {
+		
+		return "lesson06/tree";
+	}
+	
+	// 예약 확인 AJAX가 요청
+	@PostMapping("/quiz03/find-tree")
+	@ResponseBody
+	public Map<String, Object> find_tree(
+			@RequestParam("name") String name
+			,@RequestParam("phoneNumber") String phoneNumber
+			) {
+		//db 조회
+		Tree bookingTree = treeBO.getTree(name, phoneNumber);
+//		model.addAttribute("bookingTree",bookingTree);
+		
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("name",bookingTree.getName());
+		
+		result.put("code", 200);
+		result.put("result", "success");
+		
+		return result;
+	}
 }

@@ -29,7 +29,11 @@ public class TreeBO {
 //	,@RequestParam("day") int day
 //	,@RequestParam("headcount") int headcount
 //	,@RequestParam("phoneNumber") String phoneNumber
-	public void addTree(String name, Date date, int day, int headcount, String phoneNumber) {
+	public void addTree(String name, String date, int day, int headcount, String phoneNumber) {
 		treeMapper.insertTree(name, date, day, headcount, phoneNumber);
+	}
+	
+	public Tree getTree(String name, String phoneNumber) {
+		return treeMapper.selectTree(name, phoneNumber);
 	}
 }
