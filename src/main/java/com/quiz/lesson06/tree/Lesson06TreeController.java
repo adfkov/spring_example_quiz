@@ -82,7 +82,7 @@ public class Lesson06TreeController {
 	
 	// 예약 확인 AJAX가 요청
 	@PostMapping("/quiz03/find-tree")
-	@ResponseBody
+	@ResponseBody // model을 사용할 수 없다. model은 return값이 jsp로 갈 때만 사용할 수 있다. responsebody가 있을 때는 view로 갈 수 없기 때문에..
 	public Map<String, Object> find_tree(
 			@RequestParam("name") String name
 			,@RequestParam("phoneNumber") String phoneNumber
@@ -92,12 +92,17 @@ public class Lesson06TreeController {
 //		model.addAttribute("bookingTree",bookingTree);
 		
 		
+		// {"code": 200, "result": tree}
+		// {"code": 200, "result": {"id": 1  , "name":....}
 		Map<String, Object> result = new HashMap<>();
-		result.put("name",bookingTree.getName());
-		
-		result.put("code", 200);
-		result.put("result", "success");
-		
+		if(bookingTree == null) {
+			result.put("code", 400);
+			result.put("error_message", "데이터가 존재하지 않습니다.");
+		} else {
+			result.put("code", 200);
+			result.put("result", bookingTree);			
+		}
+
 		return result;
 	}
 }

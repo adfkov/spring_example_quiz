@@ -21,7 +21,7 @@ public interface TreeMapper {
 			@Param("headcount")int headcount, 
 			@Param("phoneNumber")String phoneNumber);
 	
-	public Tree selectTree(
+	public List<Tree> selectTree(
 			@Param("name")String name
 			,@Param("phoneNumber") String phoneNumber);
 }

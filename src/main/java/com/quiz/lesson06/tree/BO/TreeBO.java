@@ -33,7 +33,16 @@ public class TreeBO {
 		treeMapper.insertTree(name, date, day, headcount, phoneNumber);
 	}
 	
+	// output : treeeList -> null or tree
 	public Tree getTree(String name, String phoneNumber) {
-		return treeMapper.selectTree(name, phoneNumber);
+		List<Tree> treeList =  treeMapper.selectTree(name, phoneNumber);
+		// mybatis 는 원소가 없으면 []를 리턴한다.
+		// 리스트가 비어있으면 null 이 아닌 []
+		if(treeList.isEmpty()) {
+			return null;
+		} 
+		
+		// 리스트가 비어있지 않으면 마지막 객체 리턴
+		return treeList.get(treeList.size() - 1);
 	}
 }

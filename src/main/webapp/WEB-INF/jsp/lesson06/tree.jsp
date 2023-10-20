@@ -157,8 +157,23 @@
           	,data:{"name":name, "phoneNumber":phoneNumber}
           	,success: function(data) {
           		if(data.code == 200) {
-          			alert(data.name);
+          			alert("이름: " +data.result.name+
+          					"\n날짜: "+
+          					data.result.date.substring(0, 10)+
+          					"\n일수: " + data.result.day+
+          					"\n인원: "+data.result.headcount+
+          					"\n상태: "+data.result.state);
+          			/*	,`name`
+			,`headcount`
+			,`day`
+			,`date`
+			,`phoneNumber`
+			,`state`
+			,`createdAt`
+			,`updatedAt`*/
           			location.href = "/lesson06/quiz03/1";
+          		} else if(data.code == 400){
+          			alert(data.error_message);
           		}
           	}
           })
