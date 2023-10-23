@@ -1,6 +1,7 @@
 package com.quiz.lesson07.BO;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,19 +24,32 @@ public class CompanyBO {
 				.headcount(headcount)
 				.createdAt(ZonedDateTime.now())
 				.build();
-			return companyRepository.save(company);
-				
-//		public StudentEntity addStudent(String name, String phoneNumber, String email, String dreamJob) {
-//			StudentEntity student = StudentEntity.builder()
-//					.name(name)
-//					.phoneNumber(phoneNumber)
-//					.email(email)
-//					.dreamJob(dreamJob)
-//					.createdAt(ZonedDateTime.now()) // @UpdateTimestamp 있으면 생략 가능
-//					.build();
-//			return studentRepository.save(student); // insert 문을 만든다.
-//			
+			return companyRepository.save(
+					company);
+
 		
+	}
+	
+	public CompanyEntity updateCompany(int id, String scale, int headCount) {
+		CompanyEntity company = companyRepository.findById(id).orElse(null);
+		if(company != null) {
+			company = company.toBuilder()
+			.scale(scale)
+			.headcount(headCount)
+			.build();
+			
+			company = companyRepository.save(company);
+		}
+		return company;
+	} 
+	
+	public void deleteCompany(int id) {
+//		CompanyEntity company = companyRepository.findById(id).orElse(null);
+//		if(company != null) {
+//			companyRepository.delete(company);
+//		}
+		Optional<CompanyEntity> companyOptional = companyRepository.findById(id);
+				companyOptional.ifPresent(c -> companyRepository.delete(c));
 	}
 	
 	

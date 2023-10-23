@@ -8,6 +8,8 @@ import com.quiz.lesson07.entity.CompanyEntity;
 @Repository
 public interface CompanyRepository extends JpaRepository<CompanyEntity, Integer>{
 	
+	// 
+	// findAll() - 전체 조회
 	
 }
 

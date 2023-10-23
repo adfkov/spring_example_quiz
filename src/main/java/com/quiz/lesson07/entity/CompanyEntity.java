@@ -22,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Builder //setter 대용
+@Builder(toBuilder = true) //setter 대용
 @Data // lombok 사용
 @Entity // 엔티티다 . db와 repo의 중간
 @Table(name="company")
