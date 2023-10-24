@@ -44,7 +44,7 @@ public class Lesson07Quiz01RestController {
 		companyBO.deleteCompany(8);
 		return "삭제 완료";
 	}
-	
+
 	
 	
 }

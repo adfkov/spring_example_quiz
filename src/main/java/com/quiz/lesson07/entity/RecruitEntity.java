@@ -1,6 +1,5 @@
 package com.quiz.lesson07.entity;
 
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
@@ -19,29 +18,37 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder = true)
 @Getter
-@Builder(toBuilder = true) //setter 대용
-@Data // lombok 사용
-@Entity // 엔티티다 . db와 repository의 중간
-@Table(name="company")
-public class CompanyEntity {
+@Entity
+@Data
+@Table(name="interview")
+public class RecruitEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
-	private String business;
-	private String scale;
-	private int headcount;
-	private LocalDate deadline;
+	@Column(name="companyId")
+	private int companyId;
+	private String position;
+	private String responsibilities;
+	private String qualification;
+	private String type;
+	private String region;
+	private int salary;
+	private String deadline;
+	
 	@UpdateTimestamp
-	@Column(name="createdAt", updatable=false)
+	@Column(name="createdAt", updatable = false)
 	private ZonedDateTime createdAt;
+	
 	@UpdateTimestamp
 	@Column(name="updatedAt")
 	private ZonedDateTime updatedAt;
 	
-
+	
 }
