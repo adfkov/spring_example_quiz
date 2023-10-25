@@ -32,6 +32,6 @@ public interface RecruitRepository extends JpaRepository<RecruitEntity, Integer>
 	public List<RecruitEntity> findByDeadlineAndSalaryGreaterThanEqualAndTypeOrderBySalaryDesc(
 			@Param("deadline") LocalDate deadline 
 			, @Param("salary") int salary
-			, @Param("type")String type);
+			, @Param("type") String type);
 	//@Param("deadline") LocalDate deadline
 }
